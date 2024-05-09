@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4tvwaoyfltp5"]
+
+[ext_resource type="Script" path="res://IpText.gd" id="1_bwdrq"]
+
+[node name="IpText" type="Label"]
+scale = Vector2(2, 2)
+text = "default text"
+script = ExtResource("1_bwdrq")

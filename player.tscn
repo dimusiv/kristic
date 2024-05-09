@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://rwxksbefw2nr"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_0vhhx"]
+[ext_resource type="Texture2D" uid="uid://cvjcixidm4x48" path="res://icon.svg" id="1_4cqks"]
+[ext_resource type="PackedScene" uid="uid://ctifa2mrtgnje" path="res://joy_stick.tscn" id="3_ba3bb"]
+[ext_resource type="PackedScene" uid="uid://c4tvwaoyfltp5" path="res://ip_text.tscn" id="4_gub7v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg6cj"]
+size = Vector2(126.759, 130)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_30kyc"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_0vhhx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4cqks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.37905, 2)
+scale = Vector2(1.00381, 1)
+shape = SubResource("RectangleShape2D_rg6cj")
+disabled = true
+
+[node name="UiLayer" type="CanvasLayer" parent="."]
+scale = Vector2(0.6, 0.6)
+transform = Transform2D(0.6, 0, 0, 0.6, 0, 0)
+
+[node name="JoyStick" parent="UiLayer" instance=ExtResource("3_ba3bb")]
+position = Vector2(-756.667, 236.667)
+scale = Vector2(0.5, 0.5)
+
+[node name="IpText" parent="UiLayer" instance=ExtResource("4_gub7v")]
+offset_left = 618.333
+offset_top = -450.0
+offset_right = 708.333
+offset_bottom = -424.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_30kyc")
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://foaxauwpj24v"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_5xsiw"]
+[ext_resource type="PackedScene" uid="uid://fcd6nl67tscx" path="res://Game.tscn" id="2_8jkuh"]
+[ext_resource type="PackedScene" uid="uid://rwxksbefw2nr" path="res://player.tscn" id="3_tunib"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_5xsiw")
+game_scene = ExtResource("2_8jkuh")
+player_scene = ExtResource("3_tunib")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("..")
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="HostButton" type="Button" parent="Buttons"]
+offset_left = 416.0
+offset_top = 128.0
+offset_right = 530.0
+offset_bottom = 159.0
+scale = Vector2(3, 3)
+text = "Создать игру"
+
+[node name="JoinButton" type="Button" parent="Buttons"]
+offset_left = 296.0
+offset_top = 384.0
+offset_right = 496.0
+offset_bottom = 415.0
+scale = Vector2(3, 3)
+text = "Присоединиться к игре"
+
+[connection signal="pressed" from="Buttons/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Buttons/JoinButton" to="." method="_on_join_button_pressed"]
